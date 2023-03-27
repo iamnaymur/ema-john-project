@@ -7,20 +7,28 @@ const Cart = ({ cart }) => {
 
   let totalPrice = 0;
   let totalShipping = 0;
+  let quantity = 0;
 
   for (const product of cart) {
     //   total += product.price; //?option 1 to get total price
-    totalPrice = totalPrice + product.price; //?option 2 and both works the same
-    totalShipping = totalShipping + product.shipping;
-    }
     
-    const tax = totalPrice * 7 / 100;
-    const grandTotal = totalShipping + totalPrice + tax;
+    //^Both condition below here works the same.
+    //   if (product.quantity === 0) {
+    //       product.quantity = 1;
+    //   }
+      product.quantity = product.quantity || 1;
+    totalPrice = totalPrice + product.price*product.quantity; //?option 2 and both works the same
+    totalShipping = totalShipping + product.shipping;
+    quantity= quantity+ product.quantity
+  }
+
+  const tax = (totalPrice * 7) / 100;
+  const grandTotal = totalShipping + totalPrice + tax;
 
   return (
     <div className="cart">
       <h3>Order summary</h3>
-      <p>Selected Items: {cart.length}</p>
+      <p>Selected Items: {quantity}</p>
       <p>Total Price : ${totalPrice}</p>
       <p>Total Shipping: ${totalShipping} </p>
       <p>Tax:{tax.toFixed(2)} </p>

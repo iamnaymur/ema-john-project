@@ -36,7 +36,7 @@ const Shop = () => {
         }
         //* step 5- set the cart
         setCart(savedCart)
-    },[products])
+    },[products]) //?confusion on this dependency
     const handleAddToCart = (product) => {
         const newCart=[...cart,product]
         setCart(newCart)
