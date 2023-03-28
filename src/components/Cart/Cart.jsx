@@ -12,11 +12,8 @@ const Cart = ({ cart }) => {
   for (const product of cart) {
     //   total += product.price; //?option 1 to get total price
     
-    //^Both condition below here works the same.
-    //   if (product.quantity === 0) {
-    //       product.quantity = 1;
-    //   }
-      product.quantity = product.quantity || 1;
+    // product.quantity = product.quantity || 1;
+    
     totalPrice = totalPrice + product.price*product.quantity; //?option 2 and both works the same
     totalShipping = totalShipping + product.shipping;
     quantity= quantity+ product.quantity
