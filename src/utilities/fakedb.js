@@ -36,3 +36,9 @@ const deleteShoppingCart = () => {
 };
 
 export { addToDb, removeFromDb, getShoppingCart, deleteShoppingCart };
+
+
+
+
+
+ 

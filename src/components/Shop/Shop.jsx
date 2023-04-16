@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb, getShoppingCart} from '../../utilities/fakedb';
+import { addToDb, deleteShoppingCart, getShoppingCart} from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 
@@ -56,26 +56,35 @@ const Shop = () => {
 
         setCart(newCart)
         addToDb(product.id)
-        };
+    };
+    
+    const handleClearCart = () => { 
+        setCart([])
+        deleteShoppingCart()
+    }
+
 
     return (
-        <div className='shop-container'>
-            <div className="products-container">
-                {
-                    products.map(product =>
-                        <Product product={product}
-                            handleAddToCart={handleAddToCart}
-                            key={product.id}>  //?the key is for the better optimization and performance.
-                                </Product>) 
-                }
-            </div>
-            <div className="cart-container">
-                <Cart cart={cart}></Cart>
-               
-            </div>
-            
+      <div className="shop-container">
+        <div className="products-container">
+          {products.map((product) => (
+            <Product
+              product={product}
+              handleAddToCart={handleAddToCart}
+              key={product.id}
+            >
+              {" "}
+            </Product>
+          ))}
         </div>
+        <div className="cart-container">
+                <Cart handleClearCart={handleClearCart} cart={cart}>
+                    <Link className='proceed-link' to='/orders'><button className='btn-proceed'>Review Order</button></Link>
+          </Cart>
+        </div>
+      </div>
     );
 };
 import './Shop.css'
+import { Link } from 'react-router-dom';
 export default Shop;
