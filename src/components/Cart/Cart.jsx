@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 const Cart = ({ cart, handleClearCart,children }) => {
   // const cart= props.cart  //?option 1 to get props
   //   const { cart } = props; //?option 2 to get value by destructuring props.
-  console.log(cart);
+  // console.log(cart);
 
   let totalPrice = 0;
   let totalShipping = 0;
